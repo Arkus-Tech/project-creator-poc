@@ -3,12 +3,25 @@ import Image from "next/image"
 import { Inter } from "@next/font/google"
 import styles from "@/styles/Home.module.css"
 import { useEffect, useState } from "react"
+import { Simulate } from "react-dom/test-utils"
+import error = Simulate.error
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
   const [data, setData] = useState("")
   const [isLoading, setLoading] = useState(false)
+
+  const createTrelloBoard = (boardName: String) => {
+    console.log(`Board Name: ${boardName}`)
+    fetch(`/api/trello?boardName=${boardName}`, {
+      method: "POST",
+      body: JSON.stringify({ boardName }),
+    })
+      .then((r) => r.json())
+      .then((data) => console.log("Data: " + data.json()))
+      .catch((error) => console.error(error))
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -41,7 +54,9 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
           </p>
-          <p>{data}</p>
+          <p>
+            <button onClick={() => createTrelloBoard(data)}>{data}</button>
+          </p>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
