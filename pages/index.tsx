@@ -2,10 +2,44 @@ import Head from "next/head"
 import Image from "next/image"
 import { Inter } from "@next/font/google"
 import styles from "@/styles/Home.module.css"
+import { useEffect, useState } from "react"
+import { Simulate } from "react-dom/test-utils"
+import error = Simulate.error
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
+  const [data, setData] = useState("")
+  const [isLoading, setLoading] = useState(false)
+
+  const createTrelloBoard = (boardName: String) => {
+    console.log(`Board Name: ${boardName}`)
+    fetch(`/api/trello?boardName=${boardName}`, {
+      method: "POST",
+      body: JSON.stringify({ boardName }),
+    })
+      .then((r) => r.json())
+      .then((data) => console.log("Data: " + data.json()))
+      .catch((error) => console.error(error))
+  }
+
+  useEffect(() => {
+    setLoading(true)
+    fetch("/api/openai", {
+      method: "POST",
+      body: JSON.stringify({ project: "Spotify clone" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(`Data: ${data.name}`)
+        setData(data.name)
+        setLoading(false)
+      })
+  }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No profile data</p>
+
   return (
     <>
       <Head>
@@ -19,6 +53,9 @@ export default function Home() {
           <p>
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
+          </p>
+          <p>
+            <button onClick={() => createTrelloBoard(data)}>{data}</button>
           </p>
           <div>
             <a

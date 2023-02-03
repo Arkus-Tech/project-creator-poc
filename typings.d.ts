@@ -1,0 +1,3 @@
+type TrelloReqBody = {
+  boardName: String
+}
