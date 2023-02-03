@@ -7,13 +7,14 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "POST":
-      const body = req.query.boardName
-      console.log(`Request Body Name: ${req.body.boardName}`)
-      const response = await createProjectBoard(
-        // @ts-ignore
-        req.query.boardName.toString()
-      )
-      res.status(200).json(response)
+      const body: TrelloReqBody = JSON.parse(req.body)
+      console.log(`Body - project name: ${body.boardName}`)
+      // const response
+      // const response = await createProjectBoard(
+      //   // @ts-ignore
+      //   req.query.boardName.toString()
+      // )
+      res.status(200).json(body.boardName)
 
       break
     default:
