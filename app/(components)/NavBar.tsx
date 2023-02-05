@@ -155,46 +155,12 @@ const NavBar = () => {
                       </Tab.Panel>
                     </Tab.Panels>
                   </Tab.Group>
-
-                  {/*<div className="mt-4">*/}
-                  {/*  <button*/}
-                  {/*    type="button"*/}
-                  {/*    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"*/}
-                  {/*    onClick={closeModal}*/}
-                  {/*  >*/}
-                  {/*    Got it, thanks!*/}
-                  {/*  </button>*/}
-                  {/*</div>*/}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
-      {/*<Modal isOpen={isOpen} onClose={closeModal} isCentered>*/}
-      {/*  <ModalOverlay />*/}
-      {/*  <ModalContent>*/}
-      {/*    <ModalHeader textAlign="center">Welcome!</ModalHeader>*/}
-      {/*    <ModalCloseButton />*/}
-      {/*    <ModalBody>*/}
-      {/*      <Tabs isFitted>*/}
-      {/*        <TabList>*/}
-      {/*          <Tab>Login</Tab>*/}
-      {/*          <Tab>Sign Up</Tab>*/}
-      {/*        </TabList>*/}
-
-      {/*        <TabPanels>*/}
-      {/*          <TabPanel>*/}
-      {/*            <LoginForm {...authProps} />*/}
-      {/*          </TabPanel>*/}
-      {/*          <TabPanel>*/}
-      {/*            <RegisterForm {...authProps} />*/}
-      {/*          </TabPanel>*/}
-      {/*        </TabPanels>*/}
-      {/*      </Tabs>*/}
-      {/*    </ModalBody>*/}
-      {/*  </ModalContent>*/}
-      {/*</Modal>*/}
     </>
   )
 }
