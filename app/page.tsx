@@ -28,7 +28,6 @@ export default function Page() {
         console.log(`Data Name: ${data.name}`)
         setData(data.name)
         setLoading(false)
-        // return data
       })
       .catch((error) => {
         console.error(error)
