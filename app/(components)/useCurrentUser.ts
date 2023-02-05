@@ -1,8 +1,10 @@
+"use client"
 import { useEffect, useState } from "react"
-import { pb } from "@/helpers/pocketbase"
+import { pb } from "@/lib/pb"
 
 export default function useCurrentUser() {
-  const [currentUser, setCurrentUser] = useState(pb.authStore.model)
+  const user = pb.authStore.model
+  const [currentUser, setCurrentUser] = useState(user)
 
   useEffect(() => {
     pb.authStore.onChange((auth) => {

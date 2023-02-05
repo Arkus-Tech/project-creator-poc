@@ -1,8 +1,9 @@
 import React from "react"
-import NavBar from "@/app/(components)/NavBar"
 import "../styles/globals.css"
+import NavBar from "@/components/NavBar"
+import AuthModal from "@/app/(components)/AuthModal"
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
@@ -10,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"min-h-screen min-w-screen flex flex-col items-center"}>
-        <NavBar />
+        <NavBar AuthOption={AuthModal} />
         {children}
       </body>
     </html>
