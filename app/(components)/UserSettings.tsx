@@ -1,25 +1,31 @@
 "use client"
-import React, { Fragment } from "react"
+import React, { Fragment, useState } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import Image from "next/image"
-import useCurrentUser from "@/app/(components)/useCurrentUser"
+import useCurrentUser from "@/lib/hooks/useCurrentUser"
 import Spinner from "@/components/Spinner"
-import { useAuth } from "@/helpers/pocketbase"
+import { useAuth } from "@/lib/hooks/useAuth"
 
 const UserSettings = () => {
   const { logout } = useAuth()
-  const currentUser = useCurrentUser()
-  // if (!currentUser) return <Spinner />
+  const { currentUser } = useCurrentUser()
+  const imgSrc = !currentUser?.avatar
+    ? `https://robohash.org/${currentUser?.username}.png`
+    : `https://pocketcreator.jimmymcbride.dev/api/files/_pb_users_auth_/ooelbyidysr4c9n/${currentUser?.avatar}`
   return (
-    <Menu as="div" className="relative">
-      <Menu.Button className="">
-        <Image
-          src={`https://pocketcreator.jimmymcbride.dev/api/files/_pb_users_auth_/ooelbyidysr4c9n/${currentUser?.avatar}`}
-          className="rounded-full"
-          width={32}
-          height={32}
-          alt="Avatar"
-        />
+    <Menu as="div" className="menu h-fill">
+      <Menu.Button className="h-fill flex items-center">
+        {!currentUser ? (
+          <Spinner />
+        ) : (
+          <Image
+            src={imgSrc}
+            className="rounded-full"
+            width={32}
+            height={32}
+            alt="avatar"
+          />
+        )}
       </Menu.Button>
 
       <Transition
@@ -31,7 +37,7 @@ const UserSettings = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="menu-items">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (

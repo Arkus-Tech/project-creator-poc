@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import getProjectName from "@/helpers/openai/getProjectName"
+import getProjectName from "@/lib/openai/getProjectName"
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,6 +7,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "POST":
+      console.log("Request body: ", req.body)
       const response = await getProjectName(req.body.project)
       res.status(200).json({ name: response })
       break

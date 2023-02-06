@@ -1,5 +1,6 @@
 "use client"
-import React, { Suspense, useEffect, useState } from "react"
+import React, { useState } from "react"
+import Spinner from "@/components/Spinner"
 
 const createTrelloBoard = (boardName: String) => {
   console.log(`Board Name: ${boardName}`)
@@ -16,7 +17,7 @@ const NameBoardButton = () => {
   const [data, setData] = useState("")
   const [isLoading, setLoading] = useState(false)
 
-  useEffect(() => {
+  const getBoardName = () => {
     setLoading(true)
     fetch("/api/openai", {
       method: "POST",
@@ -32,25 +33,16 @@ const NameBoardButton = () => {
         console.error(error)
         setLoading(false)
       })
-  }, [])
+  }
+
   return (
     <div className={"flex flex-col justify-center items-center"}>
-      <button className={"mt-4 btn"} onClick={() => createTrelloBoard(data)}>
-        <Suspense
-          fallback={
-            <div className="flex justify-center items-center">
-              <div
-                className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          }
-        >
-          {data}
-        </Suspense>
+      <button className={"mt-4 btn"} onClick={() => getBoardName()}>
+        Generate Project Name
       </button>
+      <div className={"mt-4 text-lg font-bold text-slate-700"}>
+        {isLoading ? <Spinner /> : !isLoading && data === "" ? "" : data}
+      </div>
     </div>
   )
 }

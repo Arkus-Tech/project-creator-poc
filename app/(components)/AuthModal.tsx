@@ -1,19 +1,13 @@
 "use client"
 import React, { Fragment, useState } from "react"
-import { Dialog, Menu, Tab, Transition } from "@headlessui/react"
+import { Dialog, Tab, Transition } from "@headlessui/react"
 import { classNames } from "@/lib/classNames"
 import LoginForm from "@/app/(components)/LoginForm"
 import RegisterForm from "@/app/(components)/RegisterForm"
+import { useModal } from "@/lib/hooks/useModal"
 
 const AuthModal = () => {
-  let [isOpen, setIsOpen] = useState(false)
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
+  const { isOpen, openModal, closeModal } = useModal()
 
   const authProps = {
     closeModal,
