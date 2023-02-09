@@ -18,6 +18,7 @@ specifiers:
   react-dom: 18.2.0
   react-hook-form: ^7.43.0
   tailwindcss: ^3.2.4
+  trello: ^0.11.0
   typescript: 4.9.5
 
 dependencies:
@@ -35,6 +36,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.43.0_react@18.2.0
+  trello: 0.11.0
   typescript: 4.9.5
 
 devDependencies:
@@ -860,6 +862,10 @@ packages:
       is-symbol: 1.0.4
     dev: false
 
+  /es6-promise/3.0.2:
+    resolution: {integrity: sha512-CUD62/uqeE0L+EJeypOKuFfM56CFaH4vo+++J76bff0NkeQ2bBmWVCTNxL2hj9HeCYPkof6Gqea0BSeK17gBzA==}
+    dev: false
+
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
     engines: {node: '>=6'}
@@ -1423,6 +1429,11 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /iconv-lite/0.2.11:
+    resolution: {integrity: sha512-KhmFWgaQZY83Cbhi+ADInoUQ8Etn6BG5fikM9syeOjQltvR45h7cRKJ/9uvQEuD61I3Uju77yYce0/LhKVClQw==}
+    engines: {node: '>=0.4.0'}
+    dev: false
 
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
@@ -2095,6 +2106,10 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /qs/1.2.0:
+    resolution: {integrity: sha512-XUf0O7rlGjbH+n7uqyT+xn362fmoPe4ehtHL6VK1nbSgQ7CqG0ZZLr1nU2EyXlRq++YphPdQ/5scjIWNMSPnhg==}
+    dev: false
+
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -2186,6 +2201,16 @@ packages:
       supports-preserve-symlinks-flag: 1.0.0
     dev: false
 
+  /restler/3.3.0:
+    resolution: {integrity: sha512-TrnPEY3DJgFJgPd5vJmHpOj0WlAzLcX2eIcAqc/EB/YlgPFz0aMD55GkQN16d3nX0ydlq93lthZWGKyBpVnFEg==}
+    engines: {node: '>= 0.10.x'}
+    dependencies:
+      iconv-lite: 0.2.11
+      qs: 1.2.0
+      xml2js: 0.4.0
+      yaml: 0.2.3
+    dev: false
+
   /reusify/1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
@@ -2208,6 +2233,10 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
       is-regex: 1.1.4
+    dev: false
+
+  /sax/0.5.8:
+    resolution: {integrity: sha512-c0YL9VcSfcdH3F1Qij9qpYJFpKFKMXNOkLWFssBL3RuF7ZS8oZhllR2rWlCRjDTJsfq3R6wbSsaRU6o0rkEdNw==}
     dev: false
 
   /scheduler/0.23.0:
@@ -2408,6 +2437,15 @@ packages:
     dependencies:
       is-number: 7.0.0
 
+  /trello/0.11.0:
+    resolution: {integrity: sha512-WMjfSTA+ybGnd36ZoMX7Ia7wfpU9KP2lsafv9mjLwFcE1ECp8b9/rX3uW4ivNO7jVLnHRyQ1pHsirbMvK0Ix2Q==}
+    engines: {node: '>= 0.10.x'}
+    dependencies:
+      es6-promise: 3.0.2
+      object-assign: 4.1.1
+      restler: 3.3.0
+    dev: false
+
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
     dependencies:
@@ -2539,6 +2577,18 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: false
 
+  /xml2js/0.4.0:
+    resolution: {integrity: sha512-Uo9irqHi4waSloqTJ37nHn/XzbYi8JL/TYzMb+pq8xkINNayVhPTGOh8XWhZTP2WD3dX8Ngm5bGc+7YDnIoYIw==}
+    dependencies:
+      sax: 0.5.8
+      xmlbuilder: 15.1.1
+    dev: false
+
+  /xmlbuilder/15.1.1:
+    resolution: {integrity: sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==}
+    engines: {node: '>=8.0'}
+    dev: false
+
   /xtend/4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
@@ -2546,6 +2596,10 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+    dev: false
+
+  /yaml/0.2.3:
+    resolution: {integrity: sha512-LzdhmhritYCRww8GLH95Sk5A2c18ddRQMeooOUnqWkDUnBbmVfqgg2fXH2MxAHYHCVTHDK1EEbmgItQ8kOpM0Q==}
     dev: false
 
   /yaml/1.10.2:
