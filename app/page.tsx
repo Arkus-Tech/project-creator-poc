@@ -1,10 +1,22 @@
 import React from "react"
-import NameBoardButton from "@/app/(components)/NameBoardButton"
+import getBoardData from "@/lib/network/getBoardData"
+// import NameBoardButton from "@/app/(components)/NameBoardButton"
 
-export default function Page() {
+export default async function Page() {
+  const data = await getBoardData()
+  console.log("Data: ", data)
   return (
     <>
-      <NameBoardButton />
+      <h1>Page</h1>
+      <button
+        // onClick={async () => {
+        //   const data = await getBoardData()
+        //   console.log("Data: ", data)
+        // }}
+        className="btn"
+      >
+        Click me
+      </button>
     </>
   )
 }

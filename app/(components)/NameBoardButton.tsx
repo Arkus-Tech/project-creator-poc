@@ -2,13 +2,12 @@
 import React, { useEffect, useState } from "react"
 import Spinner from "@/components/Spinner"
 import Link from "next/link"
-// import { useRouter } from "next/router"
 
-const createTrelloBoard = (boardName: string, trelloToken: string) => {
-  console.log(`Board Name: ${boardName}`)
+const createTrelloBoard = (boardData: ProjectBoard, trelloToken: string) => {
+  console.log(`Board Data: ${boardData}`)
   fetch(`/api/trello/create-board`, {
     method: "POST",
-    body: JSON.stringify({ boardName, trelloToken }),
+    body: JSON.stringify({ boardData, trelloToken }),
   })
     .then((r) => r.json())
     .then((data) => console.log("Data: " + data.json()))
@@ -16,7 +15,7 @@ const createTrelloBoard = (boardName: string, trelloToken: string) => {
 }
 
 const NameBoardButton = () => {
-  const [data, setData] = useState("")
+  const [data, setData] = useState<ProjectBoard | null>(null)
   const [isLoading, setLoading] = useState(false)
   const [trelloToken, setTrelloToken] = useState("")
 
@@ -40,24 +39,24 @@ const NameBoardButton = () => {
 
   const getBoardName = () => {
     setLoading(true)
-    fetch("/api/openai", {
+    fetch("/api/ai/generate-project-board", {
       method: "POST",
-      body: JSON.stringify({ project: "Spotify clone" }),
+      body: JSON.stringify({
+        projectDescription:
+          "I want to build a todo app. I want to use Jetpack Compose, Room, and Dagger Hilt. I want my app to be a single user app, no authentication. I want user's to be able to view todo list, and filter list by the fields for priority and tags. Tags is a list of string, and users should be able to select multiple tags when filtering todos. The user should be able to mark todo's complete from the list, and be able to batch delete completed todo's. They should also be able to delete any completed todo's by swiping right on that todo as well. It should only be one screen, and adding and editing todo's should happen inside alert dialog modals.\\n\\n\\n",
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(`Data Name: ${data.name}`)
-        setData(data.name)
+        const parsedData = JSON.parse(data)
+        console.log(`Project Name: ${parsedData}`)
+        setData(parsedData)
         setLoading(false)
       })
       .catch((error) => {
         console.error(error)
         setLoading(false)
       })
-  }
-
-  const trelloAuth = () => {
-    console.log("Fetching Trello Auth")
   }
 
   return (
@@ -68,14 +67,32 @@ const NameBoardButton = () => {
       <div className={"mt-4 text-lg font-bold text-slate-700"}>
         {isLoading ? (
           <Spinner />
-        ) : !isLoading && data === "" ? (
+        ) : !isLoading && data === null ? (
           ""
         ) : (
           <div>
-            <p>{data}</p>
+            <h3 className={"text-lg font-bold"}>{data?.projectName}</h3>
+            {data?.ticketList.map((ticket) => (
+              <div key={ticket.title}>
+                <h4 className={"font-bold"}>{ticket.title}</h4>
+                <p>{ticket.scope}</p>
+                <p className={"font-bold"}>Acceptance Criteria</p>
+                {ticket.acceptanceCriteria.map((criteria) => (
+                  <p key={criteria}>{criteria}</p>
+                ))}
+                <p className={"font-bold"}>Helpful Resources</p>
+                {ticket.helpfulResources.map((resource) => (
+                  <p key={resource}>{resource}</p>
+                ))}
+              </div>
+            ))}
             <button
               className={"btn mt-4 bg-red-700"}
-              onClick={() => createTrelloBoard(data, trelloToken)}
+              onClick={() => {
+                if (data !== null) {
+                  createTrelloBoard(data, trelloToken)
+                }
+              }}
             >
               Generate Board
             </button>
@@ -85,7 +102,6 @@ const NameBoardButton = () => {
       <Link
         href={`https://trello.com/1/authorize?expiration=never&name=Project%20Board%20Generator&scope=read,write&response_type=token&key=${process.env.TRELLO_API_KEY}&callback_method=fragment&return_url=http://localhost:3000`}
         className={"mt-4 btn"}
-        onClick={() => trelloAuth()}
       >
         Link Trello Account
       </Link>
