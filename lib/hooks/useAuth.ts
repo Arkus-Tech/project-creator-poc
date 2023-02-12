@@ -1,7 +1,6 @@
-import PocketBase from "pocketbase"
-import { useEffect, useState } from "react"
-
-export const pb = new PocketBase("https://pocketcreator.jimmymcbride.dev")
+"use client"
+import { useState } from "react"
+import { pb } from "@/lib/pb"
 
 export function useAuth() {
   const [isLoading, setIsLoading] = useState(false)

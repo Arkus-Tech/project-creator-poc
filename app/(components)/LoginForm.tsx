@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useAuth } from "@/helpers/pocketbase"
+import { useAuth } from "@/lib/hooks/useAuth"
 import React from "react"
 import Spinner from "@/components/Spinner"
 

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import createProjectBoard from "@/helpers/trello/createProjectBoard"
+import createProjectBoard from "@/lib/trello/createProjectBoard"
 
 export default async function handler(
   req: NextApiRequest,
