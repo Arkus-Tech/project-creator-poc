@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import createProjectBoard from "@/lib/trello/createProjectBoard"
+import populateProjectBoard from "@/lib/network/trello/populateProjectBoard"
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,12 +8,14 @@ export default async function handler(
   switch (req.method) {
     case "POST":
       const body: TrelloReqBody = JSON.parse(req.body)
-      console.log(`Body - project name: ${body.boardName}`)
-      const response = await createProjectBoard(
-        // @ts-ignore
-        req.query.boardName.toString()
-      )
-      res.status(200).json(body.boardName)
+      const projectBoard: ProjectBoard = body.boardData
+      try {
+        await populateProjectBoard(projectBoard, body.trelloToken)
+        res.status(200).json(true)
+      } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error })
+      }
 
       break
     default:
