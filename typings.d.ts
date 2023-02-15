@@ -1,5 +1,7 @@
+declare module "trello"
 type TrelloReqBody = {
   boardName: string
+  trelloToken: string
 }
 
 interface CurrentUser extends Record<any, any> {

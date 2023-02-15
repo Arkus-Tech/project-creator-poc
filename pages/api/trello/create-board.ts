@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import createProjectBoard from "@/lib/trello/createProjectBoard"
+import process from "process"
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,11 +9,14 @@ export default async function handler(
     case "POST":
       const body: TrelloReqBody = JSON.parse(req.body)
       console.log(`Body - project name: ${body.boardName}`)
-      const response = await createProjectBoard(
-        // @ts-ignore
-        req.query.boardName.toString()
-      )
-      res.status(200).json(body.boardName)
+      const trelloApiKey = process.env.TRELLO_API_KEY
+      const boardName = encodeURIComponent(body.boardName)
+      const url = `https://api.trello.com/1/boards/?name=${boardName}&key=${trelloApiKey}&token=${body.trelloToken}`
+      console.log(`URL: ${url}`)
+      const response = await fetch(url, {
+        method: "POST",
+      })
+      res.status(response.status).json(response.body)
 
       break
     default:
