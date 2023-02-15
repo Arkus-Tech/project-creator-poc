@@ -11,3 +11,9 @@ interface CurrentUser extends Record<any, any> {
   created: string
   updated: string
 }
+
+type Tools = {
+  id: string
+  name: string
+  image: string
+}

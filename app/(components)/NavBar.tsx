@@ -18,7 +18,14 @@ const NavBar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link prefetch={false} href={"/about"}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link prefetch={false} href={"/tools"}>
+              Project Management Tools
+            </Link>
           </li>
         </ul>
         {isLoading ? <Spinner /> : isAuth ? <UserSettings /> : <AuthModal />}
