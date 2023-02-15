@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { pb } from "@/lib/pb"
+import { pb } from "@/lib/network"
 
 export function useAuth() {
   const [isLoading, setIsLoading] = useState(false)

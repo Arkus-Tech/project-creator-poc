@@ -1,6 +1,6 @@
 declare module "trello"
 type TrelloReqBody = {
-  boardName: string
+  boardData: ProjectBoard
   trelloToken: string
 }
 
@@ -12,4 +12,22 @@ interface CurrentUser extends Record<any, any> {
   avatar: string
   created: string
   updated: string
+}
+
+interface ProjectBoard {
+  projectName: string
+  ticketList: Ticket[]
+}
+
+interface Ticket {
+  title: string
+  scope: string
+  acceptanceCriteria: string[]
+  helpfulResources: string[]
+}
+
+interface CreateBoardResponse {
+  id: string
+  name: string
+  shortUrl: string
 }
