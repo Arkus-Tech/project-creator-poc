@@ -1,4 +1,4 @@
-import { openai } from "@/lib/openai/index"
+import { openai } from "@/lib/network"
 
 export default async function getProjectName(projectDescription: String) {
   const response = await openai.createCompletion({

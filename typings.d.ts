@@ -1,6 +1,6 @@
 declare module "trello"
 type TrelloReqBody = {
-  projectBoard: ProjectBoard
+  boardData: ProjectBoard
   trelloToken: string
 }
 
